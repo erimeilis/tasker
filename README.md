@@ -1,46 +1,86 @@
-# Tasker - Task Management API
+# Task Management System
 
-A comprehensive task management REST API built with NestJS, TypeScript, and PostgreSQL. Features full CRUD operations, data validation, statistics, and Docker containerization.
+A modern full-stack task management application with real-time updates, built with NestJS, React, TypeScript, and PostgreSQL. Features comprehensive CRUD operations, filtering, pagination, tagging system, and Docker containerization.
 
 ## Features
 
-- ✅ **TypeScript** - Full type safety with TypeScript
+### Backend
+- ✅ **TypeScript** - Full type safety with strict mode
 - ✅ **PostgreSQL Database** - Robust data persistence with TypeORM
-- ✅ **Docker Containerization** - Easy deployment with Docker & Docker Compose
-- ✅ **RESTful API** - Complete CRUD operations for tasks
+- ✅ **Auto Migrations** - Database migrations run automatically on startup
+- ✅ **Seeding** - Demo data auto-populated for development
+- ✅ **RESTful API** - Complete CRUD operations for tasks and tags
 - ✅ **Data Validation** - Input validation with class-validator
 - ✅ **Error Handling** - Proper HTTP status codes and error messages
 - ✅ **CORS Support** - Cross-origin resource sharing enabled
-- ✅ **Request Logging** - Comprehensive logging for debugging
-- ✅ **Statistics Endpoint** - Task analytics by status and priority
+- ✅ **Health Checks** - Docker health monitoring for all services
+
+### Frontend
+- ✅ **React + TypeScript** - Type-safe modern UI
+- ✅ **TanStack Router** - Type-safe routing with URL state management
+- ✅ **TanStack Query** - Powerful data fetching and caching
+- ✅ **Shadcn/UI** - Beautiful, accessible component library
+- ✅ **Dark Mode** - Theme toggle with system preference support
+- ✅ **Responsive Design** - Mobile-first responsive layout
+- ✅ **Real-time Search** - Debounced search with instant feedback
+- ✅ **Advanced Filtering** - Filter by status, priority, tags
+- ✅ **Pagination** - Efficient data loading with pagination
 
 ## Tech Stack
 
+### Backend
 - **Framework**: NestJS
 - **Language**: TypeScript
-- **Database**: PostgreSQL
-- **ORM**: TypeORM
+- **Database**: PostgreSQL 18
+- **ORM**: TypeORM with migrations
 - **Validation**: class-validator & class-transformer
+
+### Frontend
+- **Framework**: React 19
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **Router**: TanStack Router
+- **State Management**: TanStack Query
+- **UI Components**: Shadcn/UI + Tailwind CSS
+- **Icons**: Tabler Icons
+
+### DevOps
 - **Containerization**: Docker & Docker Compose
+- **Multi-stage Builds**: Optimized production images
+- **Health Checks**: Automated service health monitoring
 
-## Quick Start
+## Quick Start with Docker
 
-### Using Docker Compose (Recommended)
+```bash
+# Clone repository
+git clone <repository-url>
+cd task-management-system
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd tasker
-   ```
+# Start entire stack (includes auto-migrations and seeding)
+docker-compose up -d
 
-2. **Start the application**
-   ```bash
-   docker-compose up --build
-   ```
+# Access application
+Frontend: http://localhost:8080
+Backend API: http://localhost:3000
+Database: localhost:5432 (postgres/password)
+```
 
-3. **Access the API**
-   - API: http://localhost:3000
-   - Database: localhost:5432
+The application will automatically:
+1. Start PostgreSQL database
+2. Run all database migrations
+3. Seed demo tasks
+4. Start the backend API
+5. Build and serve the frontend
+
+### First-Time Setup
+
+No additional configuration needed! Docker Compose handles everything:
+- ✅ Database initialization
+- ✅ Schema creation (migrations)
+- ✅ Demo data (8 sample tasks)
+- ✅ Service health checks
+- ✅ WebSocket connection for real-time updates
+- ✅ Automatic dependency management
 
 ### Manual Setup
 

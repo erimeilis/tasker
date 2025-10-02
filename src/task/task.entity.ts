@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-} from 'typeorm';
+  ManyToMany,
+  JoinTable,
+  Index,
+} from 'typeorm'
+import { Tag } from './entities/tag.entity'
 
 export enum TaskStatus {
   PENDING = 'pending',
@@ -19,36 +23,48 @@ export enum TaskPriority {
 }
 
 @Entity('tasks')
+@Index(['status', 'priority'])
+@Index(['createdAt'])
+@Index(['dueDate'])
 export class Task {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string
 
   @Column({ length: 100 })
-  title: string;
+  @Index('idx_task_title')
+  title!: string
 
-  @Column({ type: 'text', nullable: true, length: 500 })
-  description: string;
+  @Column({ type: 'text', nullable: true })
+  description!: string
 
   @Column({
     type: 'enum',
     enum: TaskStatus,
     default: TaskStatus.PENDING,
   })
-  status: TaskStatus;
+  status!: TaskStatus
 
   @Column({
     type: 'enum',
     enum: TaskPriority,
     default: TaskPriority.MEDIUM,
   })
-  priority: TaskPriority;
+  priority!: TaskPriority
 
   @Column({ type: 'timestamp', nullable: true })
-  dueDate: Date;
+  dueDate!: Date
+
+  @ManyToMany(() => Tag, (tag) => tag.tasks, { eager: true })
+  @JoinTable({
+    name: 'tasks_tags_relation',
+    joinColumn: { name: 'task_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'tag_id', referencedColumnName: 'id' },
+  })
+  tags!: Tag[]
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date
 }
