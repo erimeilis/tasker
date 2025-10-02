@@ -2,6 +2,7 @@
 /dist
 /node_modules
 /build
+frontend/dist
 
 # Logs
 logs
@@ -41,6 +42,7 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 .env.local
+frontend/.env
 
 # temp directory
 .temp
@@ -54,3 +56,10 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# TanStack
+frontend/.tanstack/
